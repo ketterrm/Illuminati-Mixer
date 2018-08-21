@@ -17,15 +17,15 @@ Users will pull individual .stl or other files in Cura, and then assign a color 
    - Use Cura's Merge parts function to get related materials to fit together nicely in Cura.
    - Tools such as Meshmixer may be used to split single .stl files into multiple .stl files.
 
- Typically 4 filaments are CMYK with Cyan in input 1, Magenta in 2, Yellow in 3 and Key in 4.
-
  To install the pluin file in windows, put this python file Illuminati.py in the plugings directory found at:
     C:\Program Files\Ultimaker Cura 3.4\plugins\PostProcessingPlugin\scripts
     Restart Cura to be able to see plugin.
     Goto Extensions -> Post Processing -> Modify Gcode .  From the select a script button, select the illuminati plug-in.
 
+ Typically 4 filaments are CMYK with Cyan in input 1, Magenta in 2, Yellow in 3 and Key in 4.  When assigning values to each tool, the sum of the for comma separated inputs representing the propotional amount of filament for the mixture should sum to 1. 
  Current Version contains Support for 4 extruders.  (not sure if it will work for 2)
 
+The Temperature entered in the pluging will be used for all the mixtures as there is only one extruder on the Quad Crane.
 
 ## Cura
 [Cura](https://ultimaker.com/en/products/ultimaker-cura-software) is a 3rd party slicing software created and maintained by the folks over at [Ultimaker](https://ultimaker.com/). This software is provided for free and can be used to generate [.gcode](https://en.wikipedia.org/wiki/G-code) files for use with your [M3D Quad Crane 3D Printer](https://store.printm3d.com/pages/promega).
