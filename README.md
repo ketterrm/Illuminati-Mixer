@@ -1,8 +1,28 @@
-# MELT Multi-Extruder Layering Tool
+## Illuminati Mixer Tool  
 
-A Cura plugin that adds support for the [M3D ProMega 3D Printer](https://store.printm3d.com/pages/promega) Compound Extruder and QuadFusion Extruder.
+A Cura plugin that adds support for the [M3D Quad Crane 3D Printer](https://store.printm3d.com/products/crane-3d-printer) with  QuadFusion Extruder.
 
-Please visit the [melt Wiki](https://github.com/gargansa/MELT/wiki) for more information!
+This Plugin for Cura allows users to define 8 tools set up in Cura for printing on the M3D Crane QuadFusion 3D Printhead.
+
+Machine Settings with 8 different materials are assigned to them so colors are visable in Cura.
+   In Cura Machine Settings, goto Printer tab and set Number of Extruders to 8.
+   The colors assigned in the machine settings are only for visual representation in the Cura tool and
+   are not really used with this plugin.  But you can see what you will print prior to slicing.
+
+ Mixtures that are defined in the plugin are what really affect the final mixture of the 4 filaments.
+ Users will pull individual .stl or other files in Cura, and then assign a color from one of 8 extractors defined.
+   Use Cura's Merge parts function to get related materials to fit together nicely in Cura.
+   Tools such as Meshmixer may be used to split single .stl files into multiple .stl files.
+
+ Typically 4 filaments are CMYK with Cyan in input 1, Magenta in 2, Yellow in 3 and Key in 4.
+
+ To install in windows, put this python file in the plugings directory found at:
+    C:\Program Files\Ultimaker Cura 3.4\plugins\PostProcessingPlugin\scripts
+    Restart Cura to be able to see plugin.
+    Goto Extensions -> Post Processing -> Modify Gcode
+
+ Current Version contains Support for 4 extruders.  (not sure if it will work for 2)
+
 
 ## Cura
 [Cura](https://ultimaker.com/en/products/ultimaker-cura-software) is a 3rd party slicing software created and maintained by the folks over at [Ultimaker](https://ultimaker.com/). This software is provided for free and can be used to generate [.gcode](https://en.wikipedia.org/wiki/G-code) files for use with your [M3D ProMega 3D Printer](https://store.printm3d.com/pages/promega).
@@ -11,44 +31,10 @@ Please visit the [melt Wiki](https://github.com/gargansa/MELT/wiki) for more inf
 [M3D](http://printm3d.com/) is one of the leading manufacturers of consumer 3D printers and filaments in the world. M3D is the company that produces the [M3D ProMega 3D Printer](https://store.printm3d.com/pages/promega).
 
 ## MELT
-[melt](https://github.com/gargansa/MELT) is a plugin that adds support for some of the new / advanced features of the [M3D ProMega 3D Printer](https://store.printm3d.com/pages/promega).
+[melt](https://github.com/gargansa/MELT) is a plugin that adds support for some of the new / advanced features of the [M3D ProMega 3D Printer](https://store.printm3d.com/pages/promega).  The Illuminati Mixer was forked from MELT built by gargansa.
+
+
+
 
 ## Version History
-
-
-## Current Features List
-1. Support for 2-4 extruders
-2. allows the shift to start at any layer or percentage of the print and stop at any layer or percentage.
-3. Initial Flow setting for raft or anything before affected layers
-4. Shift Modifiers  - Normal, Wood Texture, Repeating Pattern, Random, Lerp, Slope, Ellipse
-5. Rate Modifiers - Normal, Random 
-6. Direction Modifier (incase you loaded the filament into opposite extruders)
-7. Final Flow setting for anything after the affected layers
-8. Debug reporting to gcode file for troubleshooting user problems that may arise
-9. Ability to only set the initial extruder rate and not shift through the print by setting change rate to 0
-10. Multiple runs of script will allow you to shift from 1:0 to 0:1 for the first % of the print and then 0:1 to 1:0 for the next % of the print 
-11. Option to wrap the shift back to the beginning nozzle with user input circular or linear to just end at the last extruder
-12. Allows a gradient shift through any number of objects in the same direction.
-
-## Possible Next Features
-1. Ability to change at a specific layer once
-2. Ability to Insert a pause at end of shift so that filaments can be removed and changed to create rainbow effect
-3. Having the ability to apply both "fixed mix ratios" and "gradients" to different parts of a multi file print.
-4. Dynamically display extruders to account for both the Dual Compound and QuadFusion extruders
-5. Increasing the number of modifiers as long as they are unique, artistic or useful.
-6. Ability to set start and end range values to each extruder
-7. Ability to select which extruders to preform the interpolation with when using three or four extruders
-8. Ability to extrude with both extruders on compound, and all four on QuadFusion at once to achieve faster print time.
-9. Ability to define starting and stopping layers for mixes. Example: First 50% of print, shift between 0.5,0.0,0.0,0.5 to 0.0,0.5,0.5,0.0 and last 50% of print shift from 0.5,0.5,0.0,0.0 to 0.0,0.0,0.5,0.5
-
-## Longer term goals (complex goals)
-1. Ability to gradient from side to side, or bottom corner to opposing top corner.
-2. Ability to paint the surface(even if low quality) and predict and split the gcode where needed to execute the change early enough to hit the mark.
-
-## Known Bugs
-1. Its possible to enter non numeral values for initial and final extruder values  but non numerals would break the code
-2. Possibly need to be able to edit P0 part of line on each extruder adjustment
-3. Lerp, Slope, Ellipse Modifiers may need touchups
-4. 
-
-
+none
