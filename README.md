@@ -14,8 +14,8 @@ Machine Settings with 8 different materials willnow be assigned to them so color
 Mixtures that are defined in the plugin settings are what really affect the final mixture of the 4 filaments.
 
 Users will pull individual .stl or other files in Cura, and then assign a color from one of 8 extractors defined.
-   - Use Cura's Merge parts function to get related materials to fit together nicely in Cura.
-   - Tools such as Meshmixer may be used to split single .stl files into multiple .stl files.
+   - Use Cura's "Merge parts" function to get related materials to fit together nicely in Cura.  Once it is merged, you can select individual parts of the merged part by holding ctrl and clicking desired part.
+   - Tools such as Meshmixer may be used to split original single .stl files into multiple .stl files.
 
  To install the pluin file in windows, put this python file Illuminati.py in the plugings directory found at:
     C:\Program Files\Ultimaker Cura 3.4\plugins\PostProcessingPlugin\scripts
