@@ -18,7 +18,7 @@ Users will pull individual .stl or other files in Cura, and then assign a color 
    - Tools such as Meshmixer may be used to split original single .stl files into multiple .stl files.
 
  To install the pluin file in windows, put this python file Illuminati.py in the plugings directory found at:
-    C:\Program Files\Ultimaker Cura 3.4\plugins\PostProcessingPlugin\scripts
+    C:\Program Files\Ultimaker Cura 4.0\plugins\PostProcessingPlugin\scripts
     Restart Cura to be able to see plugin.
     Goto Extensions -> Post Processing -> Modify Gcode .  From the select a script button, select the illuminati plug-in.
 
