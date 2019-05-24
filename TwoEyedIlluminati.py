@@ -23,6 +23,9 @@
 #
 
 # Future Updates
+# 19MAY2019 - CURA 4.0 updates
+#     - Added Bed Temp Control, updated default color mixes,
+#
 
 # Credits for contributions
 # gargansa - based off MELT plugin
@@ -53,7 +56,7 @@ def adjust_tool_mix(tool, *ext):
     return setup_line
 
 class TwoEyedIlluminati(Script):
-    version = "3.4.1"
+    version = "4.0.0"
 
     def __init__(self):
         super().__init__()
@@ -89,7 +92,7 @@ class TwoEyedIlluminati(Script):
                     "description": "Flow to initially set extruders must total up to 1.000  ::This allows the extruder to be set for any mixture of the input filaments.",
                     "unit": "0-1",
                     "type": "str",
-                    "default_value": "1,0,0,0"
+                    "default_value": "0.4,0.4,0.1,0.1"
                 },
                 "t1_flow":
                 {
@@ -97,7 +100,7 @@ class TwoEyedIlluminati(Script):
                     "description": "Flow to initially set extruders must total up to 1.000 ",
                     "unit": "0-1",
                     "type": "str",
-                    "default_value": "0,1,0,0"
+                    "default_value": "0.8,0,0,0.2"
                 },
                  "t2_flow":
                 {
@@ -105,7 +108,7 @@ class TwoEyedIlluminati(Script):
                     "description": "Flow to initially set extruders must total up to 1.000  ",
                     "unit": "0-1",
                     "type": "str",
-                    "default_value": "0,0,1,0"
+                    "default_value": "0.3,0.4,0,0.3"
                 },   
                  "t3_flow":
                 {
@@ -113,7 +116,7 @@ class TwoEyedIlluminati(Script):
                     "description": "Flow to initially set extruders must total up to 1.000 ",
                     "unit": "0-1",
                     "type": "str",
-                    "default_value": "0,0,0,1"
+                    "default_value": "0.3,0,0.4,0.3"
                 },    
                  "t4_flow":
                 {
@@ -121,7 +124,7 @@ class TwoEyedIlluminati(Script):
                     "description": "Flow to initially set extruders must total up to 1.000  ",
                     "unit": "0-1",
                     "type": "str",
-                    "default_value": "0.5,0.5,0,0"
+                    "default_value": "0,0.8,0,0.2"
 
                 },   
                  "t5_flow":
@@ -130,7 +133,7 @@ class TwoEyedIlluminati(Script):
                     "description": "Flow to initially set extruders must total up to 1.000 ",
                     "unit": "0-1",
                     "type": "str",
-                    "default_value": "0,0.5,0.5,0"
+                    "default_value": "0,0.3,0.4,0.3"
                 },   
                  "t6_flow":
                 {
@@ -138,7 +141,7 @@ class TwoEyedIlluminati(Script):
                     "description": "Flow to initially set extruders must total up to 1.000 ",
                     "unit": "0-1",
                     "type": "str",
-                    "default_value": "0.5,0,0.5,0"
+                    "default_value": "0,0,0.7,0.3"
                 },   
                  "t7_flow":
                 {
@@ -146,15 +149,23 @@ class TwoEyedIlluminati(Script):
                     "description": "Flow to initially set extruders must total up to 1.000  ",
                     "unit": "0-1",
                     "type": "str",
-                    "default_value": "0.2,0.2,0.2,0.4"                                                                                            
+                    "default_value": "0,0,0,1"                                                                                            
                 },
                  "temp":
                 {
-                    "label": "Temperature",
+                    "label": "Nozzel Temperature",
                     "description": "Enter the temperature for all tools to operate at",
                     "unit": "°C",
                     "type": "str",
-                    "default_value": "215"                                                                                            
+                    "default_value": "240"                                                                                            
+                },
+                 "bed_temp":
+                {
+                    "label": "Bed Temperature",
+                    "description": "Enter the temperature for the print bed to operate at",
+                    "unit": "°C",
+                    "type": "str",
+                    "default_value": "80"                                                                                            
                 }
             }
         }"""
@@ -173,6 +184,7 @@ class TwoEyedIlluminati(Script):
         t6_flows = [float(t6_flow) for t6_flow in self.getSettingValueByKey("t6_flow").strip().split(',')]
         t7_flows = [float(t7_flow) for t7_flow in self.getSettingValueByKey("t7_flow").strip().split(',')]
         temperature = float(self.getSettingValueByKey("temp").strip())
+        bed_temperature = float(self.getSettingValueByKey("bed_temp").strip())
         current_position = 0
         end_position = 0
         index = 0
@@ -202,15 +214,26 @@ class TwoEyedIlluminati(Script):
                     modified_gcode += print_debug("Tool P6:", t6_flows)
                     modified_gcode += print_debug("Tool P7:", t7_flows)
                     modified_gcode += print_debug("Temperature:", temperature)
-                    # Turn on tool mix ratio M568
-                    modified_gcode += "M568 P0 S1" + "\n"
-                    modified_gcode += "M568 P1 S1" + "\n"
-                    modified_gcode += "M568 P2 S1" + "\n"
-                    modified_gcode += "M568 P3 S1" + "\n"
-                    modified_gcode += "M568 P4 S1" + "\n"
-                    modified_gcode += "M568 P5 S1" + "\n"
-                    modified_gcode += "M568 P6 S1" + "\n"
-                    modified_gcode += "M568 P7 S1" + "\n"
+                    modified_gcode += print_debug("Bed Temperature:", bed_temperature)
+                    # Define tools
+                    modified_gcode += "M563 P0 D0:1:2:3 H1" + "\n"
+                    modified_gcode += "M563 P1 D0:1:2:3 H1" + "\n"
+                    modified_gcode += "M563 P2 D0:1:2:3 H1" + "\n"
+                    modified_gcode += "M563 P3 D0:1:2:3 H1" + "\n"
+                    modified_gcode += "M563 P4 D0:1:2:3 H1" + "\n"
+                    modified_gcode += "M563 P5 D0:1:2:3 H1" + "\n"
+                    modified_gcode += "M563 P6 D0:1:2:3 H1" + "\n"
+                    modified_gcode += "M563 P7 D0:1:2:3 H1" + "\n"
+                    # start commands
+                    modified_gcode += "T0" + "\n"
+                    modified_gcode += "M104 S" + str(temperature) + "\n"
+                    modified_gcode += "M190 S" + str(bed_temperature) + "\n"
+                    modified_gcode += "M109 S" + str(temperature) + "\n"
+                    modified_gcode += "M82 ;absolute extrusion mode" + "\n"
+                    modified_gcode += "M98 Pprint_start.g ;this file is part of SD card" + "\n"
+                    modified_gcode += "M83 ;relative extrusion mode" + "\n"
+                    #modified_gcode += "M107" + "\n"
+
                     # Set each tool mix ratio M567
                     modified_gcode += adjust_tool_mix("0",*t0_flows)
                     modified_gcode += adjust_tool_mix("1",*t1_flows)
@@ -246,7 +269,7 @@ class TwoEyedIlluminati(Script):
                     modified_gcode += print_debug("M109 S found and removed")
 
                 elif 'M104 S' in line:
-                    modified_gcode += print_debug("M109 S found and removed")
+                    modified_gcode += print_debug("M104 S found and removed")
 
                     # LEAVE ALL OTHER LINES ALONE SINCE THEY ARE NOT NEW LAYERS
                 else:
