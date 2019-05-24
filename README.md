@@ -4,7 +4,7 @@ A Cura plugin that adds support for the [M3D Quad Crane 3D Printer](https://stor
 
 This Plugin for Cura allows users to define 8 tools set up in Cura for printing on the M3D Crane QuadFusion 3D Printhead.
 
-The included word document provides step by step instructions.
+The included word document provides step by step instructions.  Below is an overview.
 
 First Install [Cura](https://ultimaker.com/en/products/ultimaker-cura-software). 
 
@@ -21,7 +21,7 @@ Users will pull individual .stl or other files in Cura, and then assign a color 
  To install the pluin file in windows, put this python file Illuminati.py in the plugings directory found at:
     C:\Program Files\Ultimaker Cura 4.0\plugins\PostProcessingPlugin\scripts
     Restart Cura to be able to see plugin.
-    Goto Extensions -> Post Processing -> Modify Gcode .  From the select a script button, select the illuminati plug-in.
+    Goto Extensions -> Post Processing -> Modify Gcode .  From there select a script button, select the illuminati plug-in.
 
  Typically 4 filaments are CMYK with Cyan in input 1, Magenta in 2, Yellow in 3 and Key in 4.  When assigning values to each tool, the sum of the for comma separated inputs representing the propotional amount of filament for the mixture should sum to 1. 
  Current Version contains Support for 4 extruders.  (not sure if it will work for 2)
