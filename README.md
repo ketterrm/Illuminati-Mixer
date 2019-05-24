@@ -1,14 +1,15 @@
-## Illuminati Mixer Tool   - 3D Print in the color you want!
+## Illuminati Mixer Tool   - 3D Print in the color you want!  Brought to you by FIRST FTC Team 10098 - Two Eyed Illuminati 
 
 A Cura plugin that adds support for the [M3D Quad Crane 3D Printer](https://store.printm3d.com/products/crane-3d-printer) with  QuadFusion Extruder.
 
 This Plugin for Cura allows users to define 8 tools set up in Cura for printing on the M3D Crane QuadFusion 3D Printhead.
 
-First Install [Cura](https://ultimaker.com/en/products/ultimaker-cura-software). 
-In Cura Machine Settings, goto Printer tab and set the Number of Extruders to 8. 
+The included word document provides step by step instructions.
 
-Machine Settings with 8 different materials willnow be assigned to them so colors are visable in Cura.
-   
+First Install [Cura](https://ultimaker.com/en/products/ultimaker-cura-software). 
+
+Open the included Cura project to load all the printer, material and profile settings.
+
    The colors assigned in the machine settings are only for visual representation in the Cura tool and are not really used with this plugin. So pick any materials with a color close to what you want the end color to look like.   You can see what you will print prior to slicing.
 
 Mixtures that are defined in the plugin settings are what really affect the final mixture of the 4 filaments.
@@ -40,4 +41,4 @@ The Temperature entered in the pluging will be used for all the mixtures as ther
 
 
 ## Version History
-none
+Updated 5/23/2019 with tested version !
